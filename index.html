@@ -42,7 +42,6 @@
         
         #sideMenu a, .drop-btn { padding: 10px 20px; text-decoration: none; font-size: 15px; color: white !important; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; cursor: pointer; background: none; border: none; width: 100%; text-align: left; box-sizing: border-box; line-height: 1.2; }
         
-        /* Added scrolling for long driver lists */
         .drop-container { 
             display: none; 
             background: rgba(0,0,0,0.2); 
@@ -69,6 +68,7 @@
             box-sizing: border-box;
         }
 
+        /* Using anchor tag for cards to make them links */
         .card {
             background: white;
             border-radius: 12px;
@@ -78,6 +78,8 @@
             transition: all 0.2s ease-in-out;
             cursor: pointer;
             border-top: 6px solid var(--fts-red);
+            text-decoration: none; /* remove link underline */
+            display: block;
         }
 
         .card:hover {
@@ -138,14 +140,18 @@
     <img src="logo.png" class="logo" alt="Frost Haulage">
 
     <div class="dashboard-container">
-        <div class="card" onclick="alert('Fleet Status')"><h3>Fleet Status</h3><p>Live tracking & status</p></div>
-        <div class="card" onclick="alert('Load Board')"><h3>Load Board</h3><p>Active deliveries</p></div>
-        <div class="card" onclick="alert('Driver Hours')"><h3>Driver Hours</h3><p>Tacho & rest logs</p></div>
-        <div class="card" onclick="alert('Fuel Reports')"><h3>Fuel Reports</h3><p>Efficiency tracking</p></div>
-        <div class="card" onclick="alert('Incident Logs')"><h3>Incident Logs</h3><p>Safety reporting</p></div>
-        <div class="card" onclick="alert('Finance')"><h3>Finance</h3><p>Invoicing overview</p></div>
-        <div class="card" onclick="alert('Compliance')"><h3>Compliance</h3><p>MOT & Services</p></div>
-        <div class="card" onclick="alert('Messaging')"><h3>Messaging</h3><p>Office Comms</p></div>
+        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS_eUaEiB8NEM8Kp8EysVWf67hDM6DwN4LLlVcpWVnQlYgdc6j3gMZdCiEiXFwp6pZtrRJH4m6HQ6AX/pubhtml" target="_blank" class="card">
+            <h3>Drivers Time Sheets</h3>
+            <p>View and manage weekly submissions</p>
+        </a>
+
+        <div class="card" onclick="alert('Load Board Coming Soon')"><h3>Load Board</h3><p>Active deliveries</p></div>
+        <div class="card" onclick="alert('Driver Hours Coming Soon')"><h3>Driver Hours</h3><p>Tacho & rest logs</p></div>
+        <div class="card" onclick="alert('Fuel Reports Coming Soon')"><h3>Fuel Reports</h3><p>Efficiency tracking</p></div>
+        <div class="card" onclick="alert('Incident Logs Coming Soon')"><h3>Incident Logs</h3><p>Safety reporting</p></div>
+        <div class="card" onclick="alert('Finance Coming Soon')"><h3>Finance</h3><p>Invoicing overview</p></div>
+        <div class="card" onclick="alert('Compliance Coming Soon')"><h3>Compliance</h3><p>MOT & Services</p></div>
+        <div class="card" onclick="alert('Messaging Coming Soon')"><h3>Messaging</h3><p>Office Comms</p></div>
     </div>
 
     <script>
