@@ -1,3 +1,8 @@
+I’ve updated the third card to **Daily Vehicle Checks** and linked it to your new spreadsheet. Like the trailer checks, I have set this link to open in **Preview Mode** so it looks clean and fits the dashboard style without the Google Sheets editing toolbars.
+
+Here is the updated code for your `index.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,7 +154,11 @@
             <p>Inspection logs & maintenance status</p>
         </a>
 
-        <div class="card" onclick="alert('Driver Hours Coming Soon')"><h3>Driver Hours</h3><p>Tacho & rest logs</p></div>
+        <a href="https://docs.google.com/spreadsheets/d/1bL3o4Y4SVQVMxeoyXKzo5GH3wabQ8mvgh8M8QLbmt38/preview?rm=minimal" target="_blank" class="card">
+            <h3>Daily Vehicle Checks</h3>
+            <p>Truck inspection & safety logs</p>
+        </a>
+
         <div class="card" onclick="alert('Fuel Reports Coming Soon')"><h3>Fuel Reports</h3><p>Efficiency tracking</p></div>
         <div class="card" onclick="alert('Incident Logs Coming Soon')"><h3>Incident Logs</h3><p>Safety reporting</p></div>
         <div class="card" onclick="alert('Finance Coming Soon')"><h3>Finance</h3><p>Invoicing overview</p></div>
