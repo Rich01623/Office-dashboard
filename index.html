@@ -1,3 +1,10 @@
+I have updated the second card to **Daily Trailer Checks** and linked it to the Google Sheet you provided.
+
+I also noticed that the URL you provided for this one ends in `/edit`. To make it look cleaner and more professional for the office manager (so they don't see the Google Sheets toolbars), I have set it to open in **Preview Mode**.
+
+Here is the updated code for your `index.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +75,6 @@
             box-sizing: border-box;
         }
 
-        /* Using anchor tag for cards to make them links */
         .card {
             background: white;
             border-radius: 12px;
@@ -78,7 +84,7 @@
             transition: all 0.2s ease-in-out;
             cursor: pointer;
             border-top: 6px solid var(--fts-red);
-            text-decoration: none; /* remove link underline */
+            text-decoration: none;
             display: block;
         }
 
@@ -142,10 +148,14 @@
     <div class="dashboard-container">
         <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS_eUaEiB8NEM8Kp8EysVWf67hDM6DwN4LLlVcpWVnQlYgdc6j3gMZdCiEiXFwp6pZtrRJH4m6HQ6AX/pubhtml" target="_blank" class="card">
             <h3>Drivers Time Sheets</h3>
-            <p>View and manage weekly submissions</p>
+            <p>Weekly driver submissions</p>
         </a>
 
-        <div class="card" onclick="alert('Load Board Coming Soon')"><h3>Load Board</h3><p>Active deliveries</p></div>
+        <a href="https://docs.google.com/spreadsheets/d/1nZvQOplnru5hUCy4VRmm7bVHOwuJyzvV4CD3DyDGmO0/preview?rm=minimal" target="_blank" class="card">
+            <h3>Daily Trailer Checks</h3>
+            <p>Inspection logs & maintenance status</p>
+        </a>
+
         <div class="card" onclick="alert('Driver Hours Coming Soon')"><h3>Driver Hours</h3><p>Tacho & rest logs</p></div>
         <div class="card" onclick="alert('Fuel Reports Coming Soon')"><h3>Fuel Reports</h3><p>Efficiency tracking</p></div>
         <div class="card" onclick="alert('Incident Logs Coming Soon')"><h3>Incident Logs</h3><p>Safety reporting</p></div>
@@ -167,3 +177,5 @@
     </script>
 </body>
 </html>
+
+```
