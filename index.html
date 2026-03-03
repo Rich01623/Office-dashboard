@@ -8,56 +8,56 @@
         :root { 
             --fts-red: #E62411; 
             --fts-dark: #333;
-            --bg-white: #ffffff; /* BODY & CARD BACKGROUND IS PURE WHITE */
-            --card-shadow: 0 4px 12px rgba(0,0,0,0.08); /* ADDED SOFT SHADOW */
+            --bg-white: #ffffff;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        /* PASSWORD OVERLAY STYLES */
+        /* NIGHT MODE STYLES */
+        [data-theme="dark"] {
+            --bg-white: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-main: #f0f0f0;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
         #loginOverlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 1); /* PURE WHITE BACKGROUND */
+            background: var(--bg-white);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10000;
-            color: var(--fts-dark);
             transition: 0.5s;
         }
         .login-box {
-            background: var(--bg-white);
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 12px;
             text-align: center;
-            color: var(--fts-dark);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Slight shadow for login box */
+            box-shadow: var(--card-shadow);
+            color: var(--text-main);
         }
         .login-box input {
-            padding: 10px;
-            width: 200px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            margin: 15px 0;
-            display: block;
+            padding: 10px; width: 200px;
+            border: 2px solid #ddd; border-radius: 6px;
+            margin: 15px 0; display: block;
         }
         .login-box button {
-            background: var(--fts-red);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
+            background: var(--fts-red); color: white; border: none;
+            padding: 10px 25px; border-radius: 6px; cursor: pointer; font-weight: bold;
         }
         
-        /* BLUR CONTENT UNTIL LOGIN */
         #mainContent { filter: blur(10px); transition: 0.5s; pointer-events: none; }
 
         body { 
             margin: 0; 
             font-family: -apple-system, system-ui, sans-serif; 
-            background: var(--bg-white); /* PURE WHITE BODY BACKGROUND */
+            background: var(--bg-white);
+            color: var(--text-main);
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -65,78 +65,38 @@
             min-height: 100vh;
         }
 
-        /* SIDEBAR (Kept FTS Red background) */
         #sideMenu { 
-            height: 100%; 
-            width: 0; 
-            position: fixed; 
-            z-index: 9999; 
-            top: 0; 
-            left: 0; 
-            background-color: var(--fts-red); 
-            overflow-x: hidden; 
-            transition: 0.3s; 
-            padding-top: 50px; 
-            box-shadow: 5px 0 15px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
+            height: 100%; width: 0; position: fixed; z-index: 9999; 
+            top: 0; left: 0; background-color: var(--fts-red); 
+            overflow-x: hidden; transition: 0.3s; padding-top: 50px; 
+            box-shadow: 5px 0 15px rgba(0,0,0,0.3); display: flex; flex-direction: column;
         }
-        
         #sideMenu a, .drop-btn { padding: 10px 20px; text-decoration: none; font-size: 15px; color: white !important; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; cursor: pointer; background: none; border: none; width: 100%; text-align: left; box-sizing: border-box; line-height: 1.2; }
-        
-        .drop-container { 
-            display: none; 
-            background: rgba(0,0,0,0.2); 
-            overflow-y: auto;
-            max-height: 60vh; 
-        }
-        
+        .drop-container { display: none; background: rgba(0,0,0,0.2); overflow-y: auto; max-height: 60vh; }
         .driver-row { display: flex; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .driver-name { flex-grow: 1; padding: 10px 20px; color: white; text-decoration: none; font-size: 14px; }
         .wa-side-btn { padding: 10px; color: #fff; background: rgba(255,255,255,0.1); text-decoration: none; font-size: 18px; border-left: 1px solid rgba(255,255,255,0.1); }
 
         #menuBtn { position: fixed; top: 15px; left: 15px; font-size: 26px; background: white; border: 1px solid #ddd; padding: 4px 12px; border-radius: 8px; cursor: pointer; z-index: 1000; color: var(--fts-red); line-height: 1; }
-
         .logo { max-width: 250px; margin-bottom: 30px; }
 
-        /* DASHBOARD GRID */
         .dashboard-container {
-            width: 95%;
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-            padding: 20px;
-            box-sizing: border-box;
-            background: var(--bg-white); /* ENSURE GRID AREA IS WHITE */
+            width: 95%; max-width: 1200px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px; padding: 20px; box-sizing: border-box;
         }
 
         .card {
-            background: var(--bg-white); /* CARD IS PURE WHITE */
-            border-radius: 12px;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: var(--card-shadow); /* Soft shadow applied here */
-            border-top: 6px solid var(--fts-red); /* Keep red top border for style */
-            text-decoration: none;
-            display: block;
-            border: 1px solid #f0f0f0; /* Very subtle border to define edge against white bg */
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
+            background: var(--card-bg); border-radius: 12px; padding: 40px 20px;
+            text-align: center; box-shadow: var(--card-shadow);
+            border-top: 6px solid var(--fts-red); text-decoration: none; display: block;
+            border: 1px solid rgba(0,0,0,0.05); transition: all 0.2s ease-in-out; cursor: pointer;
         }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* Slightly deeper shadow on hover */
-            border-color: #e0e0e0;
-        }
-
-        .card h3 { margin: 0; color: var(--fts-dark); font-size: 18px; text-transform: uppercase; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+        .card h3 { margin: 0; color: var(--text-main); font-size: 18px; text-transform: uppercase; }
         .card p { color: #666; font-size: 14px; margin-top: 10px; }
 
-        @media (max-width: 600px) {
-            .dashboard-container { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 600px) { .dashboard-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -190,6 +150,8 @@
                 <div class="driver-row"><a href="tel:07701238568" class="driver-name">Thomas Broomhead</a><a href="https://wa.me/447701238568" class="wa-side-btn">💬</a></div>
                 <div class="driver-row"><a href="tel:07759926814" class="driver-name">Tsz Chung Cheung</a><a href="https://wa.me/447759926814" class="wa-side-btn">💬</a></div>
             </div>
+
+            <div onclick="toggleTheme()" style="margin-top: auto; padding: 20px; color: white; cursor: pointer; text-align: center; background: rgba(0,0,0,0.1); font-size: 14px;">🌓 Toggle Night Mode</div>
             <div onclick="closeNav()" style="padding: 20px; color: white; cursor: pointer; text-align: center; text-decoration: underline; font-size: 13px;">✕ Close Menu</div>
         </div>
 
@@ -232,25 +194,38 @@
     </div>
 
     <script>
-        // PASSWORD LOGIC
         function checkPass() {
             var pass = document.getElementById("passInput").value;
-            // CHANGE YOUR PASSWORD HERE
             if(pass === "Frost2026") {
-                document.getElementById("loginOverlay").style.display = "none";
-                document.getElementById("mainContent").style.filter = "none";
-                document.getElementById("mainContent").style.pointerEvents = "auto";
+                localStorage.setItem("frostLoginTime", new Date().getTime());
+                unlock();
             } else {
                 document.getElementById("errorMsg").style.display = "block";
             }
         }
 
-        // Allow "Enter" key to submit password
-        document.getElementById("passInput").addEventListener("keyup", function(event) {
-            if (event.key === "Enter") { checkPass(); }
-        });
+        function unlock() {
+            document.getElementById("loginOverlay").style.display = "none";
+            document.getElementById("mainContent").style.filter = "none";
+            document.getElementById("mainContent").style.pointerEvents = "auto";
+        }
 
-        // MENU LOGIC
+        window.onload = function() {
+            const loginTime = localStorage.getItem("frostLoginTime");
+            if (loginTime && (new Date().getTime() - loginTime < 24 * 60 * 60 * 1000)) {
+                unlock();
+            }
+            if (localStorage.getItem("theme") === "dark") {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        };
+
+        function toggleTheme() {
+            let mode = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", mode);
+            localStorage.setItem("theme", mode);
+        }
+
         function openNav() { document.getElementById("sideMenu").style.width = "260px"; }
         function closeNav() { 
             document.getElementById("sideMenu").style.width = "0"; 
@@ -260,6 +235,7 @@
             var d = document.getElementById("driverList");
             d.style.display = (d.style.display === "block") ? "none" : "block";
         }
+        document.getElementById("passInput").addEventListener("keyup", function(e) { if (e.key === "Enter") checkPass(); });
     </script>
 </body>
 </html>
