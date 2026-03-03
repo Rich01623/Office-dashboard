@@ -14,7 +14,6 @@
             --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        /* NIGHT MODE STYLES */
         [data-theme="dark"] {
             --bg-white: #1a1a1a;
             --card-bg: #2d2d2d;
@@ -78,7 +77,11 @@
         .wa-side-btn { padding: 10px; color: #fff; background: rgba(255,255,255,0.1); text-decoration: none; font-size: 18px; border-left: 1px solid rgba(255,255,255,0.1); }
 
         #menuBtn { position: fixed; top: 15px; left: 15px; font-size: 26px; background: white; border: 1px solid #ddd; padding: 4px 12px; border-radius: 8px; cursor: pointer; z-index: 1000; color: var(--fts-red); line-height: 1; }
-        .logo { max-width: 250px; margin-bottom: 30px; }
+        
+        .header-section { text-align: center; margin-bottom: 30px; }
+        .logo { max-width: 280px; display: block; margin: 0 auto 15px; }
+        .greeting-text { font-size: 20px; font-weight: 600; margin: 5px 0; }
+        #liveClock { font-size: 14px; color: #888; margin-top: 5px; font-weight: 400; }
 
         .dashboard-container {
             width: 95%; max-width: 1200px;
@@ -93,8 +96,8 @@
             border: 1px solid rgba(0,0,0,0.05); transition: all 0.2s ease-in-out; cursor: pointer;
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-        .card h3 { margin: 0; color: var(--text-main); font-size: 18px; text-transform: uppercase; }
-        .card p { color: #666; font-size: 14px; margin-top: 10px; }
+        .card h3 { margin: 0; color: var(--text-main); font-size: 16px; text-transform: uppercase; }
+        .card p { color: #888; font-size: 13px; margin-top: 10px; }
 
         @media (max-width: 600px) { .dashboard-container { grid-template-columns: 1fr; } }
     </style>
@@ -155,7 +158,11 @@
             <div onclick="closeNav()" style="padding: 20px; color: white; cursor: pointer; text-align: center; text-decoration: underline; font-size: 13px;">✕ Close Menu</div>
         </div>
 
-        <img src="logo.png" class="logo" alt="Frost Haulage">
+        <div class="header-section">
+            <img src="logo.png" class="logo" alt="Frost Haulage">
+            <div id="greeting" class="greeting-text">Hello David...</div>
+            <div id="liveClock">Loading date & time...</div>
+        </div>
 
         <div class="dashboard-container">
             <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS_eUaEiB8NEM8Kp8EysVWf67hDM6DwN4LLlVcpWVnQlYgdc6j3gMZdCiEiXFwp6pZtrRJH4m6HQ6AX/pubhtml" target="_blank" class="card">
@@ -194,6 +201,50 @@
     </div>
 
     <script>
+        const compliments = [
+            "you look very dashing today",
+            "you're looking sharp as a tack",
+            "the office is brighter with you here",
+            "looking like a true boss today",
+            "great job on the fleet management",
+            "legendary performance today, David",
+            "you're making haulage look easy",
+            "effortlessly stylish today"
+        ];
+
+        // Pick a random compliment based on the current hour (so it stays consistent for a bit)
+        function getCompliment() {
+            const hourSeed = new Date().getHours() + new Date().getDate();
+            return compliments[hourSeed % compliments.length];
+        }
+
+        function updateClockAndGreeting() {
+            const now = new Date();
+            const hours = now.getHours();
+            
+            let timeOfDay;
+            if (hours < 12) timeOfDay = "Good morning";
+            else if (hours < 18) timeOfDay = "Good afternoon";
+            else timeOfDay = "Good evening";
+            
+            document.getElementById('greeting').textContent = `${timeOfDay} David, ${getCompliment()}`;
+
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                hour12: false 
+            };
+            document.getElementById('liveClock').textContent = now.toLocaleDateString('en-GB', options);
+        }
+        
+        setInterval(updateClockAndGreeting, 1000);
+        updateClockAndGreeting();
+
         function checkPass() {
             var pass = document.getElementById("passInput").value;
             if(pass === "Frost2026") {
