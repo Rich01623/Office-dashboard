@@ -67,10 +67,14 @@
         #sideMenu { 
             height: 100%; width: 0; position: fixed; z-index: 9999; 
             top: 0; left: 0; background-color: var(--fts-red); 
-            overflow-x: hidden; transition: 0.3s; padding-top: 50px; 
+            overflow-x: hidden; transition: 0.3s; padding-top: 10px; 
             box-shadow: 5px 0 15px rgba(0,0,0,0.3); display: flex; flex-direction: column;
         }
-        #sideMenu a, .drop-btn { padding: 10px 20px; text-decoration: none; font-size: 15px; color: white !important; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; cursor: pointer; background: none; border: none; width: 100%; text-align: left; box-sizing: border-box; line-height: 1.2; }
+        #sideMenu a, .drop-btn { padding: 12px 20px; text-decoration: none; font-size: 15px; color: white !important; display: block; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: 600; cursor: pointer; background: none; border: none; width: 100%; text-align: left; box-sizing: border-box; line-height: 1.2; }
+        
+        /* New Close Button Style */
+        .close-btn { text-align: right; padding: 10px 20px; font-size: 30px; color: white; cursor: pointer; line-height: 1; }
+
         .drop-container { display: none; background: rgba(0,0,0,0.2); overflow-y: auto; max-height: 60vh; }
         .driver-row { display: flex; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .driver-name { flex-grow: 1; padding: 10px 20px; color: white; text-decoration: none; font-size: 14px; }
@@ -119,6 +123,8 @@
         <div id="menuBtn" onclick="openNav()">☰</div>
 
         <div id="sideMenu">
+            <div class="close-btn" onclick="closeNav()">&times;</div>
+
             <a href="https://docs.google.com/spreadsheets/d/13M94l8-5aBMk9VZT5JER4pjQPg9SRttr0mySUCWAqx0/preview?rm=minimal" target="_blank">Vehicle Maintenance Calendar</a>
             <a href="https://docs.google.com/spreadsheets/d/1nZvQOplnru5hUCy4VRmm7bVHOwuJyzvV4CD3DyDGmO0/preview?rm=minimal" target="_blank">Trailer Locator</a> 
             <a href="https://docs.google.com/spreadsheets/d/1tDW99JVE3BA7tKytZJGXA8EmkFDK1JHpiemg_Azxm6Q/preview?rm=minimal" target="_blank">Holiday Planner</a>
@@ -151,11 +157,13 @@
                 <div class="driver-row"><a href="tel:07701238575" class="driver-name">Stuart Sleigh</a><a href="https://wa.me/447701238575" class="wa-side-btn">💬</a></div>
                 <div class="driver-row"><a href="tel:07546702780" class="driver-name">Svajunas Butnorius</a><a href="https://wa.me/447546702780" class="wa-side-btn">💬</a></div>
                 <div class="driver-row"><a href="tel:07701238568" class="driver-name">Thomas Broomhead</a><a href="https://wa.me/447701238568" class="wa-side-btn">💬</a></div>
-                <div class="driver-row"><a href="tel:07759926814" class="driver-name">Tsz Chung Cheung</a><a href="https://wa.me/447759926814" class="wa-side-btn">💬</a></div>
+                <div class="driver-row"><a href="tel:07759926814" class="driver-name">Tsz Chung Cheung</a><a href="https://wa.me/447559926814" class="wa-side-btn">💬</a></div>
             </div>
 
-            <div onclick="toggleTheme()" style="margin-top: auto; padding: 20px; color: white; cursor: pointer; text-align: center; background: rgba(0,0,0,0.1); font-size: 14px;">🌓 Toggle Night Mode</div>
-            <div onclick="closeNav()" style="padding: 20px; color: white; cursor: pointer; text-align: center; text-decoration: underline; font-size: 13px;">✕ Close Menu</div>
+            <div style="margin-top: auto;">
+                <div onclick="toggleTheme()" style="padding: 15px; color: white; cursor: pointer; text-align: center; background: rgba(0,0,0,0.1); font-size: 14px; border-top: 1px solid rgba(255,255,255,0.1);">🌓 Night Mode</div>
+                <div onclick="logout()" style="padding: 15px; color: white; cursor: pointer; text-align: center; background: rgba(0,0,0,0.2); font-size: 14px; font-weight: bold;">🚪 Logout</div>
+            </div>
         </div>
 
         <div class="header-section">
@@ -212,7 +220,6 @@
             "effortlessly stylish today"
         ];
 
-        // Pick a random compliment based on the current hour (so it stays consistent for a bit)
         function getCompliment() {
             const hourSeed = new Date().getHours() + new Date().getDate();
             return compliments[hourSeed % compliments.length];
@@ -221,24 +228,9 @@
         function updateClockAndGreeting() {
             const now = new Date();
             const hours = now.getHours();
-            
-            let timeOfDay;
-            if (hours < 12) timeOfDay = "Good morning";
-            else if (hours < 18) timeOfDay = "Good afternoon";
-            else timeOfDay = "Good evening";
-            
+            let timeOfDay = (hours < 12) ? "Good morning" : (hours < 18) ? "Good afternoon" : "Good evening";
             document.getElementById('greeting').textContent = `${timeOfDay} David, ${getCompliment()}`;
-
-            const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit',
-                hour12: false 
-            };
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
             document.getElementById('liveClock').textContent = now.toLocaleDateString('en-GB', options);
         }
         
@@ -259,6 +251,12 @@
             document.getElementById("loginOverlay").style.display = "none";
             document.getElementById("mainContent").style.filter = "none";
             document.getElementById("mainContent").style.pointerEvents = "auto";
+        }
+
+        // New Logout function
+        function logout() {
+            localStorage.removeItem("frostLoginTime");
+            location.reload(); // Refresh to lock the screen
         }
 
         window.onload = function() {
